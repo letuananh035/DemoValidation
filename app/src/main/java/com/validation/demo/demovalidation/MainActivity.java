@@ -1,8 +1,9 @@
 package com.validation.demo.demovalidation;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,10 +63,14 @@ public class MainActivity extends AppCompatActivity {
                 customer.onValidated("name", new ResultCallback() {
                     @Override
                     public void update(Result result) {
+//                        if(result.isFailed()){
+//                            textName.setTextColor(Color.RED);
+//                        }else{
+//                            textName.setTextColor(Color.BLACK);
+//                        }
                         if(result.isFailed()){
-                            textName.setTextColor(Color.RED);
-                        }else{
-                            textName.setTextColor(Color.BLACK);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            builder.setTitle("Name").setMessage(result.getMessage()).setCancelable(true).create().show();
                         }
                     }
                 });
@@ -99,7 +104,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-                Validation.getInstance().runObserver(customer);
+                boolean isValidated =  Validation.getInstance().runObserver(customer);
+                if(isValidated){
+	                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+	                builder.setTitle("Success").setMessage("Every thing is okay").setCancelable(true).create().show();
+                }
             }
         });
 
