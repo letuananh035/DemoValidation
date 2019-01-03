@@ -40,6 +40,17 @@
         android:layout_height="wrap_content"
         android:inputType="text" />
 
+    <TextView
+        android:id="@+id/textAgeFriend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Age your friend(non null, > 3) use($.age)"/>
+    <EditText
+        android:id="@+id/edit_age_friend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
     <Button
         android:layout_gravity="center"
         android:id="@+id/submit"

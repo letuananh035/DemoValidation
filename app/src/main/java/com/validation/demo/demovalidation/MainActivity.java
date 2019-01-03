@@ -29,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
         final TextView textName = findViewById(R.id.textName);
         final TextView textAge = findViewById(R.id.textAge);
         final TextView textEmail = findViewById(R.id.textEmail);
+        final TextView textFriend = findViewById(R.id.textAgeFriend);
 
         final EditText editName = findViewById(R.id.edit_name);
         final EditText editAge = findViewById(R.id.edit_age);
         final EditText editEmail = findViewById(R.id.edit_email);
+        final EditText editFriend = findViewById(R.id.edit_age_friend);
 
         Button btn = findViewById(R.id.submit);
 
@@ -41,15 +43,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Integer age = 0;
-
                 try{
                     age = Integer.valueOf(editAge.getText().toString());
                 }catch (Exception e){
 
                 }
 
+                Integer age1 = 0;
+                try{
+                    age1 = Integer.valueOf(editFriend.getText().toString());
+                }catch (Exception e){
+
+                }
+
                 Customer customer = new Customer(editName.getText().toString(), age );
                 customer.email = editEmail.getText().toString();
+                customer.friend = new Customer("1", age1);
                 customer.onValidated("name", new ResultCallback() {
                     @Override
                     public void update(Result result) {
@@ -77,6 +86,16 @@ public class MainActivity extends AppCompatActivity {
                             textEmail.setTextColor(Color.RED);
                         }else{
                             textEmail.setTextColor(Color.BLACK);
+                        }
+                    }
+                });
+                customer.onValidated("friend", new ResultCallback() {
+                    @Override
+                    public void update(Result result) {
+                        if(result.isFailed()){
+                            textFriend.setTextColor(Color.RED);
+                        }else{
+                            textFriend.setTextColor(Color.BLACK);
                         }
                     }
                 });

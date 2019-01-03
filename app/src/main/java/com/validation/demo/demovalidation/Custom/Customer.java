@@ -25,9 +25,9 @@ public class Customer extends IValidation
     @Email
     public String email;
 
-    //@NotNull
-    //@MinDouble(min = 2, target = "$.age",message = "Ban cua ban cua ban qua nho")
-    //public Customer friend;
+
+    @MinDouble(min = 3, target = "$.age",message = "Ban cua ban cua ban qua nho")
+    public Customer friend;
 
     public Customer(String name, int age) {
         this.name = name;
